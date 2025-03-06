@@ -5,6 +5,7 @@ import (
 	"Aggregator/internal/config"
 	"Aggregator/internal/database"
 	"database/sql"
+	"context"
 	"log"
 	"os"
 	_ "github.com/lib/pq"
@@ -44,7 +45,12 @@ func main() {
 	cmds.register("reset", reset)
 	cmds.register("users", listUsers)
 	cmds.register("agg", handlerAgg)
-	cmds.register("addfeed", handlerfeed)
+	cmds.register("addfeed", midddlewareLoggedIn(handlerAddfeed))
+	cmds.register("feeds", listfeeds)
+	cmds.register("follow", midddlewareLoggedIn(follow))
+	cmds.register("following", midddlewareLoggedIn(listfeedsfollow))
+	cmds.register("unfollow", midddlewareLoggedIn(unfollow))
+	cmds.register("browse", midddlewareLoggedIn(browse))
 
 	if len(os.Args) < 2 {
 		log.Fatalf("Usage: cli <command> [args...]")
@@ -59,4 +65,16 @@ func main() {
 		log.Fatal(err)
 	}
 
+}
+
+func midddlewareLoggedIn(handler func(s *state, cmd command, user database.User) error) func(*state, command) error {
+	
+	return func(s *state, cmd command) error {
+		user, err := s.db.GetUser(context.Background(), s.cfg.CurrentUserName)
+		if err != nil {
+			return err
+		}
+
+		return handler(s, cmd, user)
+	}
 }

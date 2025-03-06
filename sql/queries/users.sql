@@ -14,5 +14,8 @@ SELECT * FROM users WHERE name = $1;
 -- name: CleanTable :exec
 DELETE FROM users;
 
--- name: getUsers :many
+-- name: GetUsers :many
 SELECT name FROM users;
+
+-- name: GetUserById :one
+SELECT * FROM users WHERE id = $1;

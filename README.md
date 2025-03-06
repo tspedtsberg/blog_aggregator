@@ -1,1 +1,2 @@
-A guided project in Go - A blog Aggregator
+A cool RSS feed aggregator
+
