@@ -1,8 +1,8 @@
-# Gator
+# Aggregator
 
   
 
-Gator is a boot.dev guided project. It is a CLI tool for rss feed aggregation. Gator is Operating System Agnostic.
+Aggregator is a CLI tool for rss feed aggregation.
 
   
 
@@ -167,34 +167,34 @@ Now simply type
 
 1.      First register yourself as a user.
 
->       gator register %name%
+>       Aggregator register %name%
 
   
 
 2.      Login as the user you just registered
 
->       gator login %name%
+>       Aggregator login %name%
 
   
 
 3.      Add some RSS feeds.
 
->       gator addfeed “name” “feed url”
+>       Aggregator addfeed “name” “feed url”
 
   
 
 4.      Aggregate the feeds: note that the feeds will be continually polled unit stopped “CTRL+C”. Polling interval valid arguments are 1s, 1m, 1h.
 
->       gator agg 1s
+>       Aggregator agg 1s
 
   
 
 5.      Browse your feed browse has an optional argument of number of feeds you’d like to see. It will default to 2 if no value is given.
 
->       gator browse 5
+>       Aggregator browse 5
 
   
 
-Remember if you want to clear the database use the “gator reset”, there is no going back after reset. The data in data base will be erased.
+Remember if you want to clear the database use the “Aggregator reset”, there is no going back after reset. The data in data base will be erased.
 
   
